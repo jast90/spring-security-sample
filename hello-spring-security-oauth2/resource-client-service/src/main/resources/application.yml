@@ -1,0 +1,14 @@
+security:
+  oauth2:
+    client:
+      client-id: resource-client-service
+      client-secret: bar
+      access-token-uri: http://localhost:8080/oauth/token
+      user-authorization-uri: http://localhost:8080/oauth/authorize
+      grant-type: client_credentials
+      scope: server
+    resource:
+      token-info-uri: http://localhost:8080/oauth/token
+
+server:
+  port: 8081

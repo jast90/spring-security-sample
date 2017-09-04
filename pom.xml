@@ -10,5 +10,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>hello-spring-security</module>
+        <module>hello-spring-security-oauth2</module>
     </modules>
 </project>
