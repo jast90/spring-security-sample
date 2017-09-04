@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import javax.sql.DataSource;
@@ -44,7 +46,13 @@ public class HelloSpringSecurityApplication extends WebSecurityConfigurerAdapter
         auth.jdbcAuthentication().dataSource(dataSource).groupAuthoritiesByUsername(sql)//设置完后会查询所有角色
                 /*.withUser("user").password("password").roles("user")
                 .and()
-                .withUser("jast").password("123456").roles("admin")*/;
+                .withUser("jast").password("123456").roles("admin")*/
+                .passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 /*    @Bean
