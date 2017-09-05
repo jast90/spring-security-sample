@@ -7,8 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.security.Principal;
 
 /**
  * Created by zhiwen on 2017/9/4.
@@ -24,5 +28,11 @@ public class UserController {
         logger.info(userForm.toString());
         ResponseEntity<String> responseEntity = new ResponseEntity<String>("创建用户成功", HttpStatus.OK);
         return responseEntity;
+    }
+
+    @GetMapping("/currentUser")
+    @ResponseBody
+    public Principal currentUser(Principal principal) {
+        return principal;
     }
 }

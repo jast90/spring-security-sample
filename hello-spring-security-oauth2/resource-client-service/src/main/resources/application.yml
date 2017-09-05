@@ -9,6 +9,13 @@ security:
       scope: server
     resource:
       token-info-uri: http://localhost:8080/oauth/token
+      user-info-uri: http://localhost:8080/currentUser
+      preferTokenInfo: false
 
 server:
   port: 8081
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
