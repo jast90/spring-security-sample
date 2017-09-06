@@ -17,6 +17,7 @@ import java.net.URI;
  * Created by zhiwen on 2017/9/4.
  */
 @RestController
+
 public class AccountController {
     @Autowired
     @Qualifier("authServiceRestTemplate")

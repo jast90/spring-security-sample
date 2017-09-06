@@ -55,24 +55,4 @@ public class ResourceClientServiceApplication {
         return new OAuth2RestTemplate(clientCredentialsResourceDetails(), clientContext);
     }
 
-    @Bean
-    public ResourceServerTokenServices tokenServices() {
-        return new CustomUserInfoTokenServices(sso.getUserInfoUri(), sso.getClientId());
-    }
-
-
-    /*@Configuration
-    @EnableWebSecurity
-    protected class WebSecurity extends WebSecurityConfigurerAdapter {
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests().anyRequest().authenticated().and().formLogin();
-        }
-
-        @Override
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.inMemoryAuthentication().withUser("jast").password("123456")
-                    .authorities("ROLE_USER");
-        }
-    }*/
 }

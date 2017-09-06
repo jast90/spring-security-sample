@@ -8,9 +8,9 @@ security:
       grant-type: client_credentials
       scope: server
     resource:
-      token-info-uri: http://localhost:8080/oauth/token
-      user-info-uri: http://localhost:8080/currentUser
-      preferTokenInfo: false
+#      token-info-uri: http://localhost:8080/oauth/token
+      user-info-uri: http://localhost:8080/user/currentUser #参考：https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-security-oauth2-resource-server
+#      preferTokenInfo: false
 
 server:
   port: 8081
