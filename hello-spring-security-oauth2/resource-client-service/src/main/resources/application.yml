@@ -14,8 +14,8 @@ security:
 
 server:
   port: 8081
+
 logging:
+  file: resource-client.log
   level:
-    org:
-      springframework:
-        web: debug
+    org.springframework.web: debug
