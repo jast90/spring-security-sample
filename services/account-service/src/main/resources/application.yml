@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/user
+      username: root
+      password: 123456
+  thymeleaf:
+    check-template: true
+    cache: false
+weibo:
+  clientId: 2794712645
+  clientSecret:
+  redirectUri: https://passport.yhd.com/sina/callback.do
+mybatis:
+  mapper-locations: me.jastz.*.mapper
+  type-aliases-package: me.jastz.*.entity
+  configuration:
+    map-underscore-to-camel-case: true
+security:
+  basic:
+    enabled: false
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
+        jdbc: debug
+      mybatis: debug
