@@ -1,4 +1,4 @@
-package me.jastz.accountservice.socail;
+package me.jastz.authrizationservice.socail;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -33,7 +33,7 @@ public class AuthServiceApplication extends AuthorizationServerConfigurerAdapter
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("resource-client-service")
+                .withClient("resource-client-client")
                 .secret("bar")
                 .scopes("server")
                 .authorizedGrantTypes("client_credentials", "refresh_token")

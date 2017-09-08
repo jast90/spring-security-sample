@@ -1,7 +1,7 @@
-package me.jastz.accountservice.socail;
+package me.jastz.authrizationservice.socail;
 
-import me.jastz.accountservice.dao.AccountDAO;
-import me.jastz.accountservice.strategy.CurrentAccount;
+import me.jastz.accountserviceapi.service.AccountService;
+import me.jastz.authrizationservice.strategy.CurrentAccount;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.web.SignInAdapter;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -13,19 +13,19 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class SimpleSignInAdapter implements SignInAdapter {
 
-    private AccountDAO accountDAO;
+    private AccountService accountService;
 
     private CurrentAccount currentAccount;
 
-    public SimpleSignInAdapter(AccountDAO accountDAO, CurrentAccount currentAccount) {
-        this.accountDAO = accountDAO;
+    public SimpleSignInAdapter(AccountService accountService, CurrentAccount currentAccount) {
+        this.accountService = accountService;
         this.currentAccount = currentAccount;
     }
 
     @Override
     public String signIn(String userId, Connection<?> connection, NativeWebRequest request) {
         // 根据userId 判断用户是否绑定手机及设置密码，没有：跳转到设置手机、密码页面，有：跳转到首页
-        if (!accountDAO.isComplete(Long.parseLong(userId))) {
+        if (!accountService.isComplete(Long.parseLong(userId))) {
             return "/account/viewComplete";
         }
         HttpServletRequest httpServletRequest = request.getNativeRequest(HttpServletRequest.class);

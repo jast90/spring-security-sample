@@ -1,4 +1,4 @@
-package me.jastz.accountservice.strategy;
+package me.jastz.authrizationservice.strategy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

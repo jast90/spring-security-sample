@@ -1,16 +1,33 @@
 package me.jastz.authrizationservice;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
+import me.jastz.authrizationservice.strategy.CurrentAccount;
+import me.jastz.authrizationservice.strategy.SessionCurrentAccount;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
 @SpringBootApplication
 @EnableAuthorizationServer
+@ServletComponentScan
 public class AuthorizationServiceApplication extends AuthorizationServerConfigurerAdapter {
+    @Bean
+    public CurrentAccount CurrentAccount() {
+        return new SessionCurrentAccount();
+    }
+
+    @Bean
+    public DruidDataSource druidDataSource() {
+        return DruidDataSourceBuilder.create().build();
+    }
+
 
     public static void main(String[] args) {
         SpringApplication.run(AuthorizationServiceApplication.class, args);

@@ -1,7 +1,7 @@
-package me.jastz.accountservice.socail;
+package me.jastz.authrizationservice.socail;
 
-import me.jastz.accountservice.dao.AccountDAO;
-import me.jastz.accountservice.entity.Account;
+import me.jastz.accountserviceapi.entity.Account;
+import me.jastz.accountserviceapi.service.AccountService;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UserProfile;
@@ -11,17 +11,17 @@ import org.springframework.social.connect.UserProfile;
  */
 public class AccountConnectionSignUp implements ConnectionSignUp {
 
-    private AccountDAO accountDAO;
+    private AccountService accountService;
 
-    public AccountConnectionSignUp(AccountDAO accountDAO) {
-        this.accountDAO = accountDAO;
+    public AccountConnectionSignUp(AccountService accountService) {
+        this.accountService = accountService;
     }
 
     @Override
     public String execute(Connection<?> connection) {
         UserProfile userProfile = connection.fetchUserProfile();
         Account account = new Account(userProfile.getUsername(), userProfile.getFirstName(), userProfile.getLastName());
-        accountDAO.save(account);
+        accountService.save(account);
         if (account.getAccountId() != null) {
             return account.getAccountId().toString();
         }

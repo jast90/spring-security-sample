@@ -1,7 +1,7 @@
 security:
   oauth2:
     client:
-      client-id: resource-client-service
+      client-id: resource-client-client
       client-secret: bar
       access-token-uri: http://localhost:8080/oauth/token
       user-authorization-uri: http://localhost:8080/oauth/authorize

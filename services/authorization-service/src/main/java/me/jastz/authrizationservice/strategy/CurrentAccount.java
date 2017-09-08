@@ -1,4 +1,4 @@
-package me.jastz.accountservice.strategy;
+package me.jastz.authrizationservice.strategy;
 
 import javax.servlet.http.HttpSession;
 

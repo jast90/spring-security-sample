@@ -1,6 +1,6 @@
 package me.jastz.accountservice.dao;
 
-import me.jastz.accountservice.entity.Account;
+import me.jastz.accountserviceapi.entity.Account;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,9 +12,5 @@ public interface AccountDAO {
     void save(Account account);
 
     boolean isComplete(long accountId);
-
-    boolean isPhoneNumberExist(String phoneNumber);
-
-    int updateComplete(Long accountId, boolean complete);
 
 }

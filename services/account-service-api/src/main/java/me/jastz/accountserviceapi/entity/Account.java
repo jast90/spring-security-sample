@@ -1,4 +1,4 @@
-package me.jastz.accountservice.entity;
+package me.jastz.accountserviceapi.entity;
 
 /**
  * Created by zhiwen on 2017/8/25.

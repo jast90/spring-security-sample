@@ -1,4 +1,4 @@
-package me.jastz.accountservice.filter;
+package me.jastz.authrizationservice.filter;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

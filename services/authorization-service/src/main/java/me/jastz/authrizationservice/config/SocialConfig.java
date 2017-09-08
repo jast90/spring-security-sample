@@ -1,12 +1,10 @@
-package me.jastz.accountservice.config;
+package me.jastz.authrizationservice.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import me.jastz.accountservice.dao.AccountDAO;
-import me.jastz.accountservice.socail.AccountConnectionSignUp;
-import me.jastz.accountservice.socail.SimpleSignInAdapter;
-import me.jastz.accountservice.strategy.CurrentAccount;
+import me.jastz.accountserviceapi.service.AccountService;
+import me.jastz.authrizationservice.socail.AccountConnectionSignUp;
+import me.jastz.authrizationservice.strategy.CurrentAccount;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.encrypt.Encryptors;
@@ -15,11 +13,8 @@ import org.springframework.social.config.annotation.ConnectionFactoryConfigurer;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
 import org.springframework.social.connect.ConnectionFactoryLocator;
-import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
-import org.springframework.social.connect.web.ConnectController;
-import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.social.connect.web.SessionUserIdSource;
 import org.springframework.social.weibo.connect.WeiboConnectionFactory;
 
@@ -33,8 +28,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
     @Autowired
     private DruidDataSource druidDataSource;
 
+
     @Autowired
-    private AccountDAO accountDAO;
+    private AccountService accountService;
 
     @Autowired
     private Environment environment;
@@ -58,7 +54,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(druidDataSource
                 , connectionFactoryLocator, Encryptors.noOpText());
-        repository.setConnectionSignUp(new AccountConnectionSignUp(accountDAO));
+        repository.setConnectionSignUp(new AccountConnectionSignUp(accountService));
         return repository;
     }
 
