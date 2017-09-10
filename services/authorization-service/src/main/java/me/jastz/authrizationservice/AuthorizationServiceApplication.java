@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableAuthorizationServer
@@ -28,6 +29,10 @@ public class AuthorizationServiceApplication extends AuthorizationServerConfigur
         return DruidDataSourceBuilder.create().build();
     }
 
+    @Bean
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(AuthorizationServiceApplication.class, args);

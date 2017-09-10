@@ -1,7 +1,13 @@
 server:
-  port: 8080
+  port: 8081
 logging:
   level:
     org:
       springframework:
         web: debug
+        jdbc: debug
+      mybatis: debug
+weibo:
+  clientId: 1851593910
+  clientSecret:
+  redirectUri: https://passport.yhd.com/sina/callback.do
