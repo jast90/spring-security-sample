@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Qualifier(value = "druidDataSource")
+    @Qualifier(value = "dataSource")
     @Autowired
     private DataSource dataSource;
 

@@ -5,6 +5,7 @@ import me.jastz.accountserviceapi.service.AccountService;
 import me.jastz.authrizationservice.socail.AccountConnectionSignUp;
 import me.jastz.authrizationservice.strategy.CurrentAccount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.encrypt.Encryptors;
@@ -27,8 +28,9 @@ import javax.sql.DataSource;
 @EnableSocial
 public class SocialConfig extends SocialConfigurerAdapter {
 
+    @Qualifier("dataSource")
     @Autowired
-    private DataSource druidDataSource;
+    private DataSource dataSource;
 
 
     @Autowired
@@ -54,7 +56,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
 
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
-        JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(druidDataSource
+        JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource
                 , connectionFactoryLocator, Encryptors.noOpText());
         repository.setConnectionSignUp(new AccountConnectionSignUp(accountService));
         return repository;

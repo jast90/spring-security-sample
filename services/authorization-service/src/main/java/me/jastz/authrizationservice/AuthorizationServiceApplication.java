@@ -26,7 +26,7 @@ public class AuthorizationServiceApplication extends AuthorizationServerConfigur
         return new SessionCurrentAccount();
     }
 
-    @Bean("druidDataSource")
+    @Bean
     public DataSource dataSource() {
         return DruidDataSourceBuilder.create().build();
     }
