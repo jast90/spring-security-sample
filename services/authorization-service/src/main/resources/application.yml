@@ -11,3 +11,13 @@ weibo:
   clientId: 1851593910
   clientSecret:
   redirectUri: https://passport.yhd.com/sina/callback.do
+
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/user
+      username: root
+      password: 123456
+  thymeleaf:
+    check-template: true
+    cache: false

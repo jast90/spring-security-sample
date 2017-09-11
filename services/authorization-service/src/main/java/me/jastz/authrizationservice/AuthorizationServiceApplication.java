@@ -15,6 +15,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.web.client.RestTemplate;
 
+import javax.sql.DataSource;
+
 @SpringBootApplication
 @EnableAuthorizationServer
 @ServletComponentScan
@@ -24,8 +26,8 @@ public class AuthorizationServiceApplication extends AuthorizationServerConfigur
         return new SessionCurrentAccount();
     }
 
-    @Bean
-    public DruidDataSource druidDataSource() {
+    @Bean("druidDataSource")
+    public DataSource dataSource() {
         return DruidDataSourceBuilder.create().build();
     }
 

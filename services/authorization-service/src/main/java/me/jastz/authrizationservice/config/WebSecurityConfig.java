@@ -1,8 +1,8 @@
 package me.jastz.authrizationservice.config;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import me.jastz.authrizationservice.socail.SimpleSocialUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.social.security.SpringSocialConfigurer;
 
+import javax.sql.DataSource;
+
 /**
  * Created by zhiwen on 2017/9/8.
  */
@@ -21,8 +23,9 @@ import org.springframework.social.security.SpringSocialConfigurer;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Qualifier(value = "druidDataSource")
     @Autowired
-    private DruidDataSource druidDataSource;
+    private DataSource dataSource;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -49,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-                .dataSource(druidDataSource)
+                .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder());
     }
 }

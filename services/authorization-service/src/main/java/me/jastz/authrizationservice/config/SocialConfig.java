@@ -18,6 +18,8 @@ import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.web.SessionUserIdSource;
 import org.springframework.social.weibo.connect.WeiboConnectionFactory;
 
+import javax.sql.DataSource;
+
 /**
  * Created by zhiwen on 2017/9/8.
  */
@@ -26,7 +28,7 @@ import org.springframework.social.weibo.connect.WeiboConnectionFactory;
 public class SocialConfig extends SocialConfigurerAdapter {
 
     @Autowired
-    private DruidDataSource druidDataSource;
+    private DataSource druidDataSource;
 
 
     @Autowired
