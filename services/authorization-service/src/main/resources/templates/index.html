@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/login}" sec:authorize="!hasRole('ROLE_USER')">login</a>
+<form th:action="@{/logout}" method="post" sec:authorize="hasRole('ROLE_USER')">
+    <input type="submit" value="logout"/>
+</form>
+</body>
+</html>

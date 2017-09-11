@@ -14,8 +14,14 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.web.client.RestTemplate;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.dialect.IDialect;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
+import org.thymeleaf.spring4.SpringTemplateEngine;
 
 import javax.sql.DataSource;
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootApplication
 @EnableAuthorizationServer
@@ -31,8 +37,18 @@ public class AuthorizationServiceApplication extends AuthorizationServerConfigur
         return DruidDataSourceBuilder.create().build();
     }
 
+/*    @Bean
+    public TemplateEngine templateEngine() {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        Set<IDialect> dialects = new HashSet<>();
+        dialects.add(new SpringSecurityDialect());
+        templateEngine.setAdditionalDialects(dialects);
+        return templateEngine;
+    }*/
+
+
     @Bean
-    public RestTemplate restTemplate(){
+    public RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
